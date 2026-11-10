@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: >-
+  Cite this software and the accompanying manuscript. Local publication draft:
+  version and date are provisional pending Carlo Corti's inspection; the Zenodo
+  DOI sentinel is intentional and does not assert publication.
+type: software
+title: 'A358321: exact prime-power enumeration and arithmetic certificates'
+authors:
+  - family-names: Corti
+    given-names: Carlo
+    affiliation: Independent researcher
+    email: carlo.corti@outlook.com
+abstract: >-
+  C17/OpenMP enumeration, retained coverage records and Python/PARI arithmetic
+  certificates for a locally validated extension of OEIS A358321 through n=19.
+  The last minimum and final finite supplement combine native coverage with
+  exact exclusions of unfinished prime-power subtrees. Positive certification
+  is not a second exhaustive negative enumeration. Includes a monolithic TeX
+  manuscript and a bounded package-relative verification driver.
+keywords:
+  - A358321
+  - polygonal numbers
+  - distinct prime factors
+  - computational number theory
+  - arithmetic certificates
+license: MIT
+version: v1.0
+date-released: '2026-11-10'
+repository-code: https://github.com/carcorti/A358321
+url: https://doi.org/10.5281/zenodo.xxxxxxxx
+doi: 10.5281/zenodo.xxxxxxxx
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Corti
+      given-names: Carlo
+      affiliation: Independent researcher
+      email: carlo.corti@outlook.com
+  title: Extending A358321 by prime-power enumeration and arithmetic exclusions
+  year: 2026
+  doi: 10.5281/zenodo.xxxxxxxx
+  url: https://doi.org/10.5281/zenodo.xxxxxxxx
+  repository-code: https://github.com/carcorti/A358321

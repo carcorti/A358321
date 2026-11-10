@@ -1,0 +1,679 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{url}
+\hypersetup{pdftitle={Extending A358321 by prime-power enumeration and arithmetic exclusions},pdfauthor={Carlo Corti}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\title{Extending A358321 by prime-power enumeration\protect\\and arithmetic exclusions}
+\author{Carlo Corti\\Independent researcher\\\texttt{carlo.corti@outlook.com}}
+\date{November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For $n\geq3$, let $a(n)$ be the least positive index $k$ for which the
+$n$-gonal number $P_n(k)=k((n-2)k-(n-4))/2$ has exactly $n$ distinct prime
+factors. Subject to the recorded producer coverage and exact arithmetic exclusions
+described below, we report four locally validated terms of OEIS A358321
+for $n=16,17,18,19$, with
+$a(16)=119535945060$, $a(17)=1113316946280$,
+$a(18)=4278672701330$, and $a(19)=153290693815740$.
+The search constructs products of increasing distinct prime bases with
+arbitrary positive exponents, following the constructive method published
+by Daniel Suteu. Minimality rests on the recorded exhaustive producer
+coverage; for $n=19$ it also uses exact exclusions of unfinished subtrees.
+Indeed, for $p=3$ or $5$, divisibility of $P_{19}(k)$ by $p$ forces
+divisibility by $p^2$. Applied after the search, this observation completes
+the mathematical coverage without asserting native program completion.
+Independent Python and PARI/GP certificates verify the positive witnesses,
+not a second exhaustive negative enumeration. A separate final interval
+$(166539042068893,170000000000000]$ contains no matching index under
+the same execution and coverage assumptions.
+The corresponding four polygonal values give same-index consequences for
+A358862; neither this interval nor those consequences determine $a(20)$.
+\end{abstract}
+
+\noindent\textbf{2020 Mathematics Subject Classification.}
+Primary 11Y55; Secondary 11A51, 11B83.
+
+\medskip
+\noindent\textbf{Key words and phrases.}
+polygonal number, distinct prime factors, integer sequence, exhaustive enumeration,
+computational minimality, OEIS A358321.
+
+\section{Definition, provenance and contribution}\label{sec:intro}
+For integers $n\geq3$ and $k\geq1$, write
+\begin{equation}\label{eq:polygon}
+ P_n(k)=\frac{k((n-2)k-(n-4))}{2}
+       =k+(n-2)\frac{k(k-1)}2.
+\end{equation}
+This is the standard $n$-gonal number formula~\cite{polygonal}.
+For a positive integer $v$, let $\omega(v)$ count its distinct prime divisors,
+with $\omega(1)=0$; $\Omega(v)$ counts them with multiplicity~\cite{distinct}.
+The target sequence is
+\begin{equation}\label{eq:def}
+ a(n)=\min\{k\geq1:\omega(P_n(k))=n\},
+\end{equation}
+whenever the set is nonempty. Thus the parameter $n$ controls both the
+polygonal order and the required support cardinality. For example,
+$P_3(11)=66=2\cdot3\cdot11$ and $a(3)=11$.
+
+A358321 was submitted by Ilya Gutkovskiy on 12 December 2022~\cite{oeis321}.
+The source prefix consulted before the computation comprised $n=3,\ldots,15$:
+\begin{multline}\label{eq:prefix}
+11,210,87,228,1155,7854,66612,395646,2193303,8389010,\\
+122574155,630341910,6066475415.
+\end{multline}
+The official OEIS export retrieved through the OEIS-maintained GitHub
+repository on 9 November 2026 exposes the same prefix; a check on
+10 November returned identical entry text. Direct retrieval of the
+corresponding live b-files and detailed editorial history was unavailable
+in the author's retrieval environment. The contribution asserted here is a
+local validated extension of that stated baseline, without a claim of
+worldwide priority or an assertion that OEIS has incorporated these terms.
+
+The closely related sequence A358862 records the least \emph{value}, rather
+than its index~\cite{oeis862}. Its entry credits Gutkovskiy, 3 December 2022,
+and Daniel Suteu for terms $12$--$15$ and two PARI programs dated
+4 December 2022. Suteu's constructive program enumerates integers with a
+specified number of distinct prime factors by increasing prime bases and
+positive powers, then tests polygonality. Its driver also searches successive adjacent value windows. This
+constructive enumeration and windowing are the central algorithmic
+prior art used here. The same entry contains Harvey P. Dale's Mathematica
+program of 9 September 2023 for the first eight terms. The present work is
+a fresh C implementation of that method, with exact tail bounds, streaming
+minima and retained coverage evidence; it does not claim to have originated
+constructive prime-power enumeration.
+
+The distinctive feature of the last minimum is its mixed proof: the
+computationally completed subtrees are combined with an elementary
+valuation obstruction for the unfinished part. The obstruction was applied
+after the expensive search; it was not an early subtree filter of the
+producer. We first describe the finite search, then prove this obstruction
+and state the computational result with its precise evidence boundary.
+
+\section{A finite and nonredundant search}\label{sec:method}
+\subsection{Bounds and exact inversion}
+Let $q_i$ be the $i$th prime and put $Q_r=\prod_{i=1}^r q_i$, with $Q_0=1$.
+If $\omega(v)=n$, then $v\geq Q_n$. Moreover every prime divisor $p$ of such
+a $v\leq B$ satisfies
+\begin{equation}\label{eq:cap}
+ p\leq\left\lfloor B/Q_{n-1}\right\rfloor,
+\end{equation}
+because the other $n-1$ distinct primes have product at least $Q_{n-1}$.
+The bound remains valid when some exponents exceed one.
+For an index cutoff $K$, it is therefore sufficient to construct the
+$n$-support integers in $[Q_n,P_n(K)]$.
+
+For fixed $n$, direct subtraction gives
+\begin{equation}\label{eq:monotone}
+ P_n(k+1)-P_n(k)=(n-2)k+1>0.
+\end{equation}
+A positive integer $v$ is $n$-gonal exactly when
+\begin{equation}\label{eq:inverse}
+ D=(n-4)^2+8(n-2)v=s^2,\qquad
+ k=\frac{s+n-4}{2(n-2)}\in\mathbb Z_{\geq1},
+\end{equation}
+where $s$ is the nonnegative integer square root. This follows by completing
+the square in~\eqref{eq:polygon}; the same inverse criterion is given
+in~\cite{polygonal}. A square discriminant alone is insufficient: the
+divisibility and positive-index tests are required. The implementation also
+substitutes the recovered $k$ into~\eqref{eq:polygon} before accepting it.
+For $n=16$, the equivalent reduced formulas
+\begin{equation}\label{eq:16}
+ P_{16}(k)=k(7k-6),\qquad t^2=7v+9,\qquad k=(t+3)/7
+\end{equation}
+reduce the size of the radicand. Here $t=s/4$ when $s$ is the
+nonnegative root in~\eqref{eq:inverse} for $n=16$.
+
+\subsection{Increasing prime powers and tail pruning}
+Every integer with $n$ distinct prime divisors has a unique representation
+\begin{equation}\label{eq:tuple}
+ v=p_1^{e_1}\cdots p_n^{e_n},\qquad
+ p_1<\cdots<p_n,\qquad e_i\geq1.
+\end{equation}
+At a recursive node, $m$ is the current product and $r$ prime bases remain
+to be selected. For each next prime $p$ in increasing order, the generator
+tries its powers with exponent $1,2,\ldots$, and recurses using only primes
+larger than $p$. If $t_1<\cdots<t_r$ are the least allowed remaining primes,
+then every completion is at least
+\begin{equation}\label{eq:tail}
+ m\prod_{i=1}^r t_i.
+\end{equation}
+A branch is discarded when this lower bound exceeds $B$. The bound is
+monotone as the next prime or its exponent increases, justifying termination
+of the corresponding loop. The prime list is obtained by a sieve through
+the inclusive cap~\eqref{eq:cap}. Products below a window's lower bound
+may be constructed, but are not tested for membership in that window.
+
+\begin{proposition}[Completeness of the finite generator]\label{prop:generator}
+For a finite positive bound $B$, the preceding procedure generates each
+integer $v\leq B$ with $\omega(v)=n$ exactly once, before the window lower
+bound and polygonality tests.
+\end{proposition}
+\begin{proof}
+The prime cap contains every prime of every admissible tuple by~\eqref{eq:cap}.
+Fix one such tuple. At any of its prefixes, the least-tail product in
+\eqref{eq:tail} cannot exceed the actual completion, so its path is never
+pruned. Monotonicity of the tail bound ensures that every earlier prime or
+exponent choice also passes its relevant bound, so no preceding loop break
+prevents reaching the prescribed choice at any depth. Induction on the remaining depth reaches its leaf.
+Conversely, every leaf has exactly $n$ increasing prime bases with positive
+exponents, so has support size $n$. Unique factorization makes two distinct
+tuples unequal as integers. There are finitely many primes under the cap;
+each exponent is bounded by $p^e\leq B$; recursion has depth $n$. Thus all
+loops terminate. The empty search case $B<Q_n$ follows from the primorial
+bound and requires no recursive leaves.
+\end{proof}
+
+Separate value windows have inclusive lower bound one greater than the
+previous upper bound. For a fixed $n$, their coverage therefore joins without
+a gap or overlap. Since tuple order is not numerical product order, the
+producer retains a minimum over the whole completed window rather than
+taking the first polygonal leaf. Equalities~\eqref{eq:monotone}
+and~\eqref{eq:inverse} make least value and least index equivalent.
+
+\subsection{Arithmetic and persistent minima}\label{sec:implementation}
+The source uses C17 with GCC's \texttt{unsigned \_\_int128}
+extension~\cite{gcc} for products, discriminants and wide counters; the
+implementation stores prime bases as 32-bit unsigned integers. Before multiplying by $p$, a bound of the form
+$m\leq B/p$ prevents overflow. The numerical admission checks bound both
+the sieve cap by $2^{32}-1$ and the generic discriminant by $2^{128}-1$.
+The implemented input domain $13\leq n\leq24$ is a numerical capacity
+statement, not a computed range or a guarantee of feasible running time.
+
+Necessary square-residue tests modulo $64$ and $63$ precede the exact root
+calculation at a leaf. The masks are constructed from all square residues,
+so rejecting a nonsquare residue cannot discard a polygonal value. A
+floating-point root estimate affects speed only: exact integer-square
+comparisons correct it in both directions and the acceptance test is integer
+arithmetic. In particular, no probable-prime test is used to decide membership
+of an enumerated leaf; its prime support is already explicit.
+
+The tree is partitioned by fixed initial prime-power tuples. The final
+$n=19$ jobs use three-base prefixes. OpenMP workers process these disjoint
+units~\cite{gcc}; a unit may be interrupted and resumed from its last fully
+processed tuple. In the later producer the cursor order is the lexical
+order of prime/exponent choices used by the recursion, rather than the order
+of products. An improved global minimum is durably recorded before a cursor
+or completion record advances. An interruption before that advance may
+repeat work, but cannot silently skip an unrecorded smaller witness. A
+completion record certifies exhaustion of a unit's prescribed traversal;
+a partial record does not.
+
+The earlier producer, denoted E in Table~\ref{tab:windows}, executed all
+six $n=16,17,18$ windows and the first three $n=19$ windows. It used the
+same increasing-prime-power generation, depth-three partition, tail bounds,
+leaf masks and exact membership criterion. A completed unit's minimum and
+certificate were persisted together in its completion record; partial-unit
+work was discarded and that unit restarted on the next call. The second
+and third $n=19$ windows required such continuation. The later producer L
+retains the tuple cursors and improving minimum records described above.
+Its first $n=19$ window has initial index cutoff $81587135064138$ and starts
+at value $P_{19}(81587135064138)+1$, exactly after E's final covered value.
+Thus E accounts for nine rows and L for three rows of the table.
+Both producers are retained with their own native verifiers; a separate
+artifact auditor checks the corresponding histories and their exact join.
+Integrity of these histories supports provenance, but the mathematical
+coverage argument also requires the generator, the exact window boundaries,
+the disjoint unit definitions and their completion or analytic exclusion.
+The reproducibility material for this draft is associated with the intended
+project reference~\cite{corti}; its publication status is stated below.
+
+\section{Arithmetic exclusion of entire subtrees}\label{sec:arithmetic}
+Put $L_n(k)=(n-2)k-(n-4)$, which is positive for $n\geq3$, $k\geq1$.
+The two linear factors satisfy
+\begin{equation}\label{eq:gcd}
+ \gcd(k,L_n(k))=\gcd(k,n-4).
+\end{equation}
+Here $\gcd(k,-1)=1$ and $\gcd(k,0)=k$, so the identity includes $n=3,4$.
+It follows by subtracting $(n-2)k$ inside the gcd. The shared prime
+support is thus confined to the primes of $n-4$, except that $n=4$ is the
+square case. For example~\eqref{eq:16} gives
+\begin{equation}\label{eq:support16}
+ \omega(P_{16}(k))=\omega(k)+\omega(7k-6)
+                  -\boldsymbol{1}_{2\mid k}-\boldsymbol{1}_{3\mid k},
+\end{equation}
+because $\gcd(k,7k-6)=\gcd(k,6)$. The symbol
+$\boldsymbol{1}_{E}$ is one when $E$ holds and zero otherwise.
+
+For a prime $p$ and a positive integer $x$, write $v_p(x)$ for the exponent
+of $p$ in $x$.
+\begin{lemma}[Odd-prime obstruction]\label{lem:valuation}
+Let $n\geq3$ and let $p$ be an odd prime dividing $n-4$. For every $k\geq1$,
+\begin{equation}\label{eq:noone}
+ p\mid P_n(k)\quad\Longleftrightarrow\quad p\mid k,
+ \qquad p\mid P_n(k)\quad\Longrightarrow\quad p^2\mid P_n(k).
+\end{equation}
+In particular $v_p(P_n(k))\ne1$.
+\end{lemma}
+\begin{proof}
+Since $n-2\equiv2\pmod p$ and $2$ is invertible modulo $p$,
+$P_n(k)\equiv k^2\pmod p$. Thus $p\mid P_n(k)$ if and only if $p\mid k$.
+In that case both $k$ and $L_n(k)$ are divisible by $p$, and division of
+their product by $2$ does not remove a factor of $p$. This proves the claim.
+\end{proof}
+
+The restriction to odd primes is essential to this proof. For example,
+$P_{10}(2)=10$ has 2-adic valuation one although $2\mid10-4$.
+For $n=3$ there is no prime divisor of $n-4=-1$. For $n=4$ every odd prime
+divides $n-4=0$ and the conclusion agrees with $P_4(k)=k^2$; in that case
+all prime valuations, including the 2-adic valuation, are even. These are
+elementary consequences of the defining polynomial; no novelty claim is
+made for the gcd identity or the lemma.
+
+\subsection{The two relevant primes for \texorpdfstring{$n=19$}{n=19}}
+Here
+\begin{equation}\label{eq:19}
+ P_{19}(k)=k(17k-15)/2,\qquad n-4=15.
+\end{equation}
+Lemma~\ref{lem:valuation} applies to $p=3,5$. As finite arithmetic checks,
+the residue lists for $k=0,\ldots,8$ modulo $9$, and for
+$k=0,\ldots,24$ modulo $25$, are respectively
+\begin{align}
+ &(0,1,1,0,7,4,0,4,7),\label{eq:mod9}\\
+ &\begin{aligned}[t]
+ (0,1,19,4,6,0,11,14,9,21,0,21,9,\qquad\\
+ 14,11,0,6,4,19,1,0,16,24,24,16).
+ \end{aligned}\label{eq:mod25}
+\end{align}
+The second display is one list continued on its next line.
+Neither $3,6$ modulo $9$ nor $5,10,15,20$ modulo $25$ occurs. These
+lists apply to every integer $k$ by the exact identities
+\begin{align}
+ P_{19}(k+9)-P_{19}(k)&=9(17k+69),\label{eq:period9}\\
+ P_{19}(k+25)-P_{19}(k)&=25(17k+205).\label{eq:period25}
+\end{align}
+The direct divisibility proof establishes the universal assertion without
+relying on numerical sampling. Python and PARI/GP also check the displayed
+lists and period identities independently.
+
+If a fixed prefix contains $3^1$ or $5^1$, every descendant has that exact
+valuation: later prime bases are strictly greater than those already fixed.
+Its entire subtree is therefore empty of 19-gonal values, regardless of how
+much of the subtree the native program processed. This argument depends on
+the prime being fixed in the prefix; it does not reject a branch simply
+because that prime might occur later.
+
+Unit IDs are local to each window: zero-based numbering follows the
+lexicographic order of $(p_1,e_1,p_2,e_2,p_3,e_3)$ in its prefix map.
+Changing the upper bound can insert prefixes and change later IDs.
+In the decisive window the sole unfinished unit, numbered $0$,
+fixes $(2^1,3^1,5^1)$.
+In the final supplement the unfinished units $0$ and $110$ fix
+$(2^1,3^1,5^1)$ and $(2^2,3^1,5^1)$, respectively. All three subtrees are
+excluded by the lemma. The exponent mapping is checked against the actual
+prefix definitions and stored cursors, not inferred from a unit's number.
+The $p=3$ case alone suffices to exclude all three pending subtrees;
+$p=5$ gives an additional sufficient obstruction for them. Across the
+full prefix maps, the union of the two obstruction classes contains
+$276$ of $577$ and $279$ of $590$ units, respectively. Most of these units
+were already completed computationally: only the pending units are added
+as analytic coverage in the proof, so completed units are never counted twice.
+
+The $p=3$ exclusion was adopted after the search had produced the $n=19$
+witness and had left one native unit unfinished. The $p=5$ instance was
+then documented before the final supplement. The unchanged producer still
+applied its residue masks at leaves; it did not implement these analytic
+prefix exclusions. Mathematical closure and native completion therefore
+remain distinct: the last two jobs are retained as incomplete and unsealed.
+
+\section{Coverage, certificates and results}\label{sec:results}
+\subsection{Finite coverage and computational theorem}
+Table~\ref{tab:windows} gives the inclusive index cutoffs and prefix counts.
+For each $n$, the first value window starts at $Q_n$, and each later window
+starts at the previous $P_n(K)+1$. For $n=19$ this includes the transition
+between the earlier and later producers. No index $k$ with $P_n(k)<Q_n$ can satisfy the predicate, since the
+primorial threshold bounds polygonal values.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{crrrrl}
+\toprule
+Producer & $n$ & $K$ & Closed & Total & Minimum / analytic addition\\
+\midrule
+E & 16 & 68231913854 & 158 & 158 & none\\
+E & 16 & 152571197612 & 320 & 320 & 119535945060\\
+E & 17 & 506328003064 & 154 & 154 & none\\
+E & 17 & 876985826602 & 251 & 251 & none\\
+E & 17 & 1518984009193 & 393 & 393 & 1113316946280\\
+E & 18 & 9762008494901 & 337 & 337 & 4278672701330\\
+\midrule
+E & 19 & 67989279220115 & 297 & 297 & none\\
+E & 19 & 77519705336978 & 332 & 332 & none\\
+E & 19 & 81587135064138 & 343 & 343 & none\\
+L & 19 & 117760885979226 & 451 & 451 & none\\
+L & 19 & 166539042068893 & 576 & 577 & 153290693815740; unit $0$ empty\\
+L & 19 & 170000000000000 & 588 & 590 & none; units $0,110$ empty\\
+\bottomrule
+\end{tabular}
+\caption{Retained coverage. E and L denote the earlier and later producer.
+Closed counts distinct natively completed prefix units within each window. The final two rows have full mathematical coverage only after
+adding the stated analytic exclusions; their native jobs remain incomplete.}
+\label{tab:windows}
+\end{table}
+
+\begin{theorem}[Validated computational minima]\label{thm:main}
+Subject to the correct execution of the validated prime-power producers
+and the recorded disjoint coverage in Table~\ref{tab:windows}, together with
+the exact prefix exclusions of Lemma~\ref{lem:valuation}, the minima in
+\eqref{eq:def} for $n=16,17,18,19$ and their polygonal values are those in
+Table~\ref{tab:values}. For $n=19$, no $k$ in the separate interval
+\begin{equation}\label{eq:supplement}
+ 166539042068893<k\leq170000000000000
+\end{equation}
+satisfies $\omega(P_{19}(k))=19$.
+\end{theorem}
+\begin{proof}[Computational proof with arithmetic exclusions]
+Under the execution and coverage hypotheses of the theorem, for $n=16$
+all $158+320=478$ units are complete and their minimum is the
+reported index. For $n=17$ the corresponding counts are
+$154+251+393=798$, and for $n=18$ all $337$ units are complete. The
+primorial bound, the adjacent value windows and
+Proposition~\ref{prop:generator} account for every possible smaller value.
+Independent positive certificates establish membership at the reported
+indices.
+
+For $n=19$, the first four rows for that $n$ have no hits and complete
+native coverage through $K=117760885979226$. The next window has $576$
+natively complete units out of $577$, and the durably recorded global
+minimum over the union of their processed tuples is $153290693815740$. Its positive
+certificate belongs to complete unit $32$, whose three-base prefix is
+$(2^1,3^3,5^2)$. The only remaining unit is $0$, excluded by
+Lemma~\ref{lem:valuation}. Thus no smaller matching value remains outside
+the proved coverage. Strict monotonicity~\eqref{eq:monotone} establishes
+the least index.
+
+The supplement starts at value $P_{19}(166539042068893)+1$ and has $588$
+complete native units out of $590$, with no positive minimum. Its only
+pending units $0$ and $110$ are also excluded by the lemma. This proves
+\eqref{eq:supplement} empty of matching indices. The native records remain
+$576/577$ and $588/590$; no completion record is supplied in place of the
+arithmetic proof. The negative computational part is not a second,
+independently implemented exhaustive enumeration.
+\end{proof}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{rrr}
+\toprule
+$n$ & $a(n)$ & $P_n(a(n))$\\
+\midrule
+16 & 119535945060 & 100021895128994153154840\\
+17 & 1113316946280 & 9296059671549446483637180\\
+18 & 4278672701330 & 146456320680822524361241890\\
+19 & 153290693815740 & 199733312889341920908906236550\\
+\bottomrule
+\end{tabular}
+\caption{The four locally admitted terms and the exact same-index polygonal
+values. The last column is derived from the middle column, rather than
+from a separate enumeration.}\label{tab:values}
+\end{table}
+
+The supplement records an additional finite no-hit interval after the minimum
+was established; it is not needed to prove that minimum.
+The producer records minima, rather than all matching indices. In particular,
+the proof of the least $n=19$ index does not enumerate every matching index
+between that minimum and the supplement's lower cutoff. Hence the empty
+supplement must not be enlarged to the interval $(a(19),170000000000000]$
+without additional evidence. The cutoff concerns $P_{19}$, and gives no
+search coverage for $P_{20}$.
+
+\subsection{Independent positive certificates and their limits}\label{sec:cert}
+For each reported term, an independent Python checker factors the two linear
+factors by elementary trial division, combines their exponents and accounts
+for division by $2$ in~\eqref{eq:polygon}. For even orders it can instead
+factor the already simplified product, as in~\eqref{eq:16}. It compares the
+prime support and full product with the claimed value, and checks the exact
+inverse discriminant. Changed-index, changed-value and changed-factor
+controls are rejected. Separate PARI/GP inputs factor the values and verify
+primality, support size and inversion. The relevant meanings of
+\texttt{omega}, \texttt{bigomega}, \texttt{factor}, \texttt{isprime} and
+\texttt{ispolygonal} are documented in the official manual~\cite{pari}.
+Explicit primality verification avoids treating an unproved large factor
+from a general factorization routine as automatically prime.
+
+For $k=153290693815740$, the retained certificate is
+\begin{equation}\label{eq:factor19}
+\begin{aligned}
+ P_{19}(k)={}&2\cdot3^3\cdot5^2\cdot7\cdot11\cdot13\cdot17^2\cdot19
+                 \cdot23\cdot29\cdot31\cdot37\\
+             &{}\cdot41\cdot43\cdot67\cdot71\cdot73\cdot101\cdot569.
+\end{aligned}
+\end{equation}
+There are $19$ distinct bases. In particular the valuations at $3$ and $5$
+are $3$ and $2$, consistent with the arithmetic obstruction. The Python
+check also factors the two linear factors independently of the producer's
+prime-power traversal. PARI/GP provides another arithmetic backend. Both
+certify this positive witness, not the assertion that every smaller index
+fails the predicate.
+
+A retained Python test harness constructs a diagnostic C fixture from the
+producer and compares its complete small output sets for orders $n=4,5,6,7$
+against a direct distinct-factor-count sieve, with filters both enabled and
+disabled. These diagnostic orders lie outside the production input domain. This
+is distinct from the built-in self-test. Further retained tests cover
+resumed tails, malformed records and interruption/recovery. The small-set oracle counts
+prime divisors by marking multiples, rather than by the producer's
+prime-power recursion. These finite tests do not independently enumerate
+the full production ranges. Replaying Suteu's published GP method on the
+13 source terms checks its implementation and the value/index convention;
+it is reproduction of the same constructive method, not independent
+mathematical evidence for all new non-hits. Similarly, an artifact auditor
+checks integrity, counters, prefix identities, positive products and
+coverage joins; it does not itself regenerate every omitted leaf.
+
+The resulting certification boundary has three components: mathematical
+completeness of the finite generator, correct execution and coverage of its
+computationally closed subtrees, and independently checked arithmetic of
+the positive witnesses and excluded prefixes. The conditional execution
+basis in Theorem~\ref{thm:main} makes the residual common-mode risk explicit.
+
+\section{Consequences for related sequences}\label{sec:related}
+Write $b(n)$ for A358862. Since~\eqref{eq:monotone} is strictly positive,
+\begin{equation}\label{eq:relation}
+ b(n)=P_n(a(n))
+\end{equation}
+whenever the minimum exists. Conversely, the exact inverse~\eqref{eq:inverse}
+recovers $a(n)$ from $b(n)$. All 13 source pairs for $n=3,\ldots,15$
+satisfy this relation; for example, $P_3(11)=66$ and
+$P_{15}(6066475415)=239213805711830629680$. Thus the final column of
+Table~\ref{tab:values} is also the locally validated same-index extension
+of A358862 through $19$. It requires no second autonomous search.
+
+A359014, also submitted by Gutkovskiy on 12 December 2022, instead minimizes
+the index under $\Omega(P_n(k))=n$; its entry includes Suteu's PARI program
+and credits his terms $29$--$34$~\cite{oeis014}. This distinction changes
+the minima already at $n=3$: $P_3(7)=28=2^2\cdot7$ has $\Omega=3$ and
+$\omega=2$. Its longer source table therefore cannot extend the present
+sequence. More generally, varying $n$ changes both the polynomial and the
+target support, so none of the relations here converts the finite $n=19$
+coverage into a determination of $a(20)$. No assertion of existence for
+every $n$ is implied by the finite results.
+
+\section{Implementation context and reproducibility}\label{sec:repro}
+The computation was run on an AMD Ryzen 9 7940HS workstation with eight
+physical cores and sixteen hardware threads, under Linux Mint 22.3
+(x86-64; kernel 6.17.0-42-generic). The production build used GCC 13.3.0,
+C17, OpenMP and the flags
+\begin{quote}\small\ttfamily\raggedright
+-O3 -march=native -mtune=native -flto -funroll-loops
+-fomit-frame-pointer -std=c17 -fopenmp
+\end{quote}
+with the retained warning options and the mathematics library. These flags
+and the original build specification are retained; \texttt{-march=native}
+means that the executable itself is specific to the build host. The final
+jobs were configured with eight worker threads. This is a configuration,
+not an eightfold speedup claim. The checkers use Python 3.12.3 standard-library
+integer arithmetic and PARI/GP 2.15.4. Neither Sidef nor a symbolic algebra
+package is a dependency of the production enumeration.
+
+As one scoped measurement, the final interval~\eqref{eq:supplement} consumed
+about $9900$ seconds of accumulated native search wall time in three calls,
+including work on prefixes covered analytically but not skipped by
+the unchanged producer. This is not
+CPU time or a conservative resource reservation; it also excludes elapsed
+time between calls. Its stored leaf count is $2791504259667$, and its
+stored exact-root-call count is $52068962797$. The lower value cutoff skips
+membership tests but does not eliminate construction of below-cutoff tuples,
+so these counters are not counts of distinct admissible indices in the
+supplement. They must not be used to extrapolate a guaranteed runtime for
+another order or horizon. No single whole-project timing or peak-memory
+benchmark is asserted here.
+
+The local reproducibility material retains the source and build specification,
+the earlier producer needed for its own histories, the 17-term table, exact
+window and prefix records, positive Python/PARI certificates, modular
+certificates and validation programs with their inputs and execution outputs.
+A reconstruction of the proof checks, in order, the historical prefix and
+value/index map, the producer identities appropriate to each history, the
+coverage joins and completed units, the analytically excluded prefixes, and
+the positive factorizations. These steps check the retained computation;
+a full independent reproduction of the negative search is a stronger and
+separate task. The intended repository and archive reference~\cite{corti}
+designates a future release of this material and does not establish present
+public access.
+
+\section{Conclusion}
+The locally validated prefix of A358321 now contains 17 terms, indexed
+$3$ through $19$, with four terms beyond the source baseline.
+The corresponding extension of A358862 is an exact consequence of monotonicity.
+The last minimum illustrates how an elementary valuation obstruction can
+complete a finite computational proof by excluding entire unfinished
+prime-power subtrees. Its negative part still relies on the recorded
+producer coverage of the other subtrees. The empty final interval is a
+separate finite statement for order $19$; the next undetermined term
+in this work is $a(20)$.
+
+\section*{Data availability}
+The source, build specifications, complete term table, coverage records,
+positive certificates, arithmetic exclusions, validation programs, original
+inputs and execution outputs are retained locally for this draft. No public
+release has yet been uploaded. A local publication package has been prepared
+for author inspection; it has not been verified as a distributed release.
+The repository and archive locators listed in References identify the intended
+public release and do
+not assert current public access. The Zenodo DOI placeholder will be replaced
+after the first publication on Zenodo when the author supplies the verified
+official locator.
+
+\section*{AI use disclosure}
+Large language models were used as research and drafting assistants during
+the A358321 workflow, including OpenAI Codex and external LLM-based review
+systems presented as ChatGPT, Claude, DeepSeek, Gemini, Grok, Kimi, Qwen,
+MiniMax and GLM/Z.ai. These are recorded service or family attributions;
+exact backend identities and model versions were not consistently
+authenticated. One manuscript review was obtained through a Mistral-hosted
+service and identified its model family as GLM; that backend attribution
+was not independently authenticated. Meta AI was also used as a service in preliminary analysis;
+its underlying model family is not assumed. The assistance and review
+reports are retained privately.
+
+\paragraph{Mathematical analysis.}
+AI assistance was used to examine the distinct-factor predicate, source
+relationships, finite enumeration bounds and arithmetic subtree exclusions.
+The accepted statements are supported by the defining identities, preserved
+OEIS source records, explicit proofs, result tables and Python/PARI arithmetic
+certificates. Repeated source values in an AI response do not constitute
+independent confirmation.
+
+\paragraph{Algorithm and code.}
+Codex assisted implementation and validation design. Reports identifying
+Claude and MiniMax contributed to code review. Final computational claims
+are tied to the retained source/build identities, recorded coverage, small
+exact-set comparisons, cursor/recovery tests and independent positive
+certificates. These checks do not turn LLM review or positive arithmetic
+certification into a second exhaustive negative enumeration. The arithmetic
+prefix exclusions were applied after the search and are not attributed to
+an earlier implementation feature.
+
+\paragraph{Manuscript.}
+Codex assisted drafting, literature verification, arithmetic cross-checks and
+internal examination. External LLM manuscript reviews of the initial draft
+and focused reviews of the revised draft were assessed against the canonical
+term table, coverage records, original
+source exports, certificate programs and execution outputs. Their reported
+arithmetic checks and static prefix-map replays are distinct from an
+independent exhaustive replay of the negative search. Final numerical
+claims rely on those local artifacts and validation, not on conversational
+assertions. These reports do not establish independent reproduction of the full
+negative enumeration or acceptance by a publication venue.
+
+The author, Carlo Corti, takes full scientific responsibility for the
+mathematical statements, algorithm, implementation, numerical results,
+validation boundaries and conclusions of this paper.
+
+\clearpage
+\begin{thebibliography}{9}
+\sloppy\raggedright
+\bibitem{oeis321}
+OEIS Foundation Inc., \emph{A358321: a(n) is the index of the smallest
+n-gonal number with exactly n distinct prime factors},
+The On-Line Encyclopedia of Integer Sequences.
+Submitted by Ilya Gutkovskiy, 12 December 2022.
+\url{https://oeis.org/A358321}.
+Official export consulted 9 November 2026; sequence revision \#67 dated 16 February 2025.
+
+\bibitem{oeis862}
+OEIS Foundation Inc., \emph{A358862: a(n) is the smallest n-gonal number
+with exactly n distinct prime factors},
+The On-Line Encyclopedia of Integer Sequences.
+Submitted by Ilya Gutkovskiy, 3 December 2022; terms $12$--$15$ and PARI
+programs by Daniel Suteu, 4 December 2022; Mathematica program by
+Harvey P. Dale, 9 September 2023.
+\url{https://oeis.org/A358862}.
+Official export consulted 9 November 2026; sequence revision \#17 dated 16 February 2025.
+
+\bibitem{oeis014}
+OEIS Foundation Inc., \emph{A359014: a(n) is the index of the smallest
+n-gonal number with exactly n prime factors (counted with multiplicity)},
+The On-Line Encyclopedia of Integer Sequences.
+Submitted by Ilya Gutkovskiy, 12 December 2022; PARI program and terms
+$29$--$34$ by Daniel Suteu, 12 December 2022.
+\url{https://oeis.org/A359014}.
+Official export consulted 9 November 2026; sequence revision \#7 dated 16 February 2025.
+
+\bibitem{polygonal}
+E. W. Weisstein, \emph{Polygonal Number}, MathWorld---A Wolfram Resource.
+\url{https://mathworld.wolfram.com/PolygonalNumber.html}.
+Consulted 9 November 2026.
+
+\bibitem{distinct}
+E. W. Weisstein, \emph{Distinct Prime Factors}, MathWorld---A Wolfram Resource.
+\url{https://mathworld.wolfram.com/DistinctPrimeFactors.html}.
+Consulted 9 November 2026.
+
+\bibitem{pari}
+The PARI Group, \emph{PARI/GP: Catalogue of GP/PARI Functions,
+Arithmetic functions}, official online manual; computations here used
+PARI/GP 2.15.4.
+\url{https://pari.math.u-bordeaux.fr/dochtml/html-stable/Arithmetic_functions.html}.
+Consulted 9 November 2026.
+
+\bibitem{gcc}
+Free Software Foundation, \emph{Using the GNU Compiler Collection:
+128-bit Integers}; \emph{GNU libgomp: Enabling OpenMP}, online documentation.
+\url{https://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html};
+\url{https://gcc.gnu.org/onlinedocs/libgomp/Enabling-OpenMP.html}.
+Consulted 9 November 2026; production compiler GCC 13.3.0.
+
+\bibitem{corti}
+C. Corti, \emph{Extending A358321 by prime-power enumeration and arithmetic exclusions},
+GitHub repository and Zenodo archive, 2026.
+\url{https://github.com/carcorti/A358321};
+\url{https://doi.org/10.5281/zenodo.xxxxxxxx}.
+Author-designated prospective release locators. The Zenodo DOI placeholder
+will be replaced after the first publication on Zenodo when the author
+supplies the verified official locator.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,20 @@
+/* Carlo Corti. Independent PARI exact positive certificate, no search. */
+k = 1113316946280;
+num = k*(15*k-13);
+if(num%2, error("inexact division by two"));
+v = num/2;
+if(v != 9296059671549446483637180, error("polygon value mismatch"));
+F = factor(v);
+if(matsize(F)[1] != 17, error("distinct support mismatch"));
+if(prod(i=1, matsize(F)[1], F[i,1]^F[i,2]) != v, error("factor product"));
+for(i=1,matsize(F)[1],if(!isprime(F[i,1]),error("composite base")));
+t = sqrtint(169+120*v);
+if(t*t != 169+120*v || (t+13)%30 != 0 || (t+13)/30 != k, error("inverse"));
+print("k=", k);
+print("factor(k)=", factor(k));
+print("factor(15*k-13)=", factor(15*k-13));
+print("P17(k)=",v);
+print("factor(P17(k))=",F);
+print("omega(P17(k))=",omega(v));
+print("PARI_CERTIFICATE_PASS");
+quit;

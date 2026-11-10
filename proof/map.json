@@ -1,0 +1,913 @@
+{
+  "schema": 1,
+  "author": "Carlo Corti",
+  "archive": "proof/run.tgz",
+  "archive_sha256": "ee0136f7114e19652f4d6f4ef105ff2aff7fcb38e4197f48987f95a58f5440d9",
+  "archive_bytes": 608069,
+  "object_bytes": 1633157,
+  "objects": 79,
+  "restored_paths": 112,
+  "restored_bytes": 2056991,
+  "public_source_sha256": "ccfd7b4e9ab4fe4752c01b4e1d523d8aa6082dc0c5a82b4fc0d798f19ed4b167",
+  "public_makefile_sha256": "7fdd1a24fff3225833f3236874908325fca701165f60d977e5e8f3a484e75823",
+  "original_makefile_sha256": "ebb3863ebc7a54157f57370adcab1d04aa5fcfce1c9d1fd4a7bb51b08c8efb26",
+  "note": "Original paths restored only outside payload; original bytes, native incompleteness and historical identities preserved. No private external reviews included.",
+  "files": [
+    {
+      "path": "data/b358321.txt",
+      "sha256": "d471d62e4eaed9f443559629031a37e8bfc6dd535c9fb84ee6a5d33b2f0e10bf",
+      "bytes": 186,
+      "mode": 436,
+      "role": "canonical contiguous terms",
+      "public": "data/b358321.txt"
+    },
+    {
+      "path": "old/data/b358321.txt",
+      "sha256": "c7da85aaa491e6c55aad17e9f31f5bdb1f51f20a4ddce277f625568c0c475c56",
+      "bytes": 167,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0000"
+    },
+    {
+      "path": "old/outputs/run1/cfg.json",
+      "sha256": "61a49db4d328d9b504cc35c9f61cba0b4c67b6687d2b0ee8625d84e0b1d3649a",
+      "bytes": 268,
+      "mode": 384,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0001"
+    },
+    {
+      "path": "old/outputs/run1/cover.tsv",
+      "sha256": "38282c458487f02cf3b4ba2400be829cef4a2b8bb9fd9d7299b20ecafbcc31b4",
+      "bytes": 265381,
+      "mode": 384,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0002"
+    },
+    {
+      "path": "old/outputs/run1/env.txt",
+      "sha256": "7a7cf1d2f99ee84d525fc07ac9119f19d1cdde5bc71f8b595e974d07f749ec2f",
+      "bytes": 334,
+      "mode": 384,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0003"
+    },
+    {
+      "path": "old/outputs/run1/hits.tsv",
+      "sha256": "08ffd7af3c0c250730b911af17e8746f2c68f14d53004ba48a9c870b8fbafb08",
+      "bytes": 449,
+      "mode": 384,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0004"
+    },
+    {
+      "path": "old/outputs/run1/state.json",
+      "sha256": "0e1d9b5acb86d272faada419d29873cafe6b6e3adf50f47f9879f8a0f487338e",
+      "bytes": 395,
+      "mode": 384,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0005"
+    },
+    {
+      "path": "old/src/Makefile",
+      "sha256": "a1f7cd357bb9eac0ed71e24f95a80beec9b3d2a2230b409cbf71b9465a2d4135",
+      "bytes": 669,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0006"
+    },
+    {
+      "path": "old/src/a358321",
+      "sha256": "61fdc55351a522cdffbd9e089ce22f7d79fb652b2335d54a90b0e534f72e4827",
+      "bytes": 95408,
+      "mode": 509,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0007"
+    },
+    {
+      "path": "old/src/a358321.c",
+      "sha256": "e78691faaeb1b9647c815d9eae2c53344b4662f3faa439c0d5357a920c769931",
+      "bytes": 44654,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0008"
+    },
+    {
+      "path": "old/src_review/r03/closure/run.json",
+      "sha256": "2267a40e05e771ee7f6dfbfb7040fe45fb82ac41f75af861c13788879ade8539",
+      "bytes": 4533,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0009"
+    },
+    {
+      "path": "old/validation/check_a358321.py",
+      "sha256": "9cbe730665ce56209e8a2ff404538a7f634b43829021524b30240dedb6c93ad0",
+      "bytes": 12352,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0010"
+    },
+    {
+      "path": "old/validation/check_init.py",
+      "sha256": "803703bca5388340e45b5d1d9e2830c4cf301733a6c394d5d5a771996b8f4073",
+      "bytes": 3899,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0011"
+    },
+    {
+      "path": "old/validation/check_review02.py",
+      "sha256": "6052ac63796391e900a7eef8a2e9b9208f7b8cd83633194c7db9989cb7826fa9",
+      "bytes": 6139,
+      "mode": 436,
+      "role": "schema1 producer, original verifier dependencies and historical coverage",
+      "member": "r0012"
+    },
+    {
+      "path": "outputs/a16/b-prev.txt",
+      "sha256": "b5b3c0ab19a6a5ffb8035a41d4d23960ee6e08873e6af6fd51e1a52f8f44f80a",
+      "bytes": 116,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0013"
+    },
+    {
+      "path": "outputs/a16/cert.gp",
+      "sha256": "dd1a5a29c573ac52a4368593d6e8fa1f2039dd88c014920c51f66440f974c003",
+      "bytes": 696,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a16/cert.gp"
+    },
+    {
+      "path": "outputs/a16/cert.json",
+      "sha256": "a7e514d2bc30bed00e217977aafdac3ac6683ee01e25c1ee90c1edbc40dcfe19",
+      "bytes": 960,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0014"
+    },
+    {
+      "path": "outputs/a16/cert.py",
+      "sha256": "25f0b4f356d2375f0733c6fb4189b1813b7333c836e2c9422a1cc34197a82d6e",
+      "bytes": 4534,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a16/cert.py"
+    },
+    {
+      "path": "outputs/a16/pari.log",
+      "sha256": "c7bbad2600e33310a460391aa797f4a92d53f3c0772540e91a2740b60be70336",
+      "bytes": 362,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0015"
+    },
+    {
+      "path": "outputs/a16/result.json",
+      "sha256": "9ebd6603c21c717d33dd6d490deb7e75b36bb14831f2436ebf3dbd8a47562463",
+      "bytes": 1379,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0016"
+    },
+    {
+      "path": "outputs/a17/b-prev.txt",
+      "sha256": "41abf6331ff9e2efc868642d4728fb27cc5b187bfdfe7b226372d651abef44ad",
+      "bytes": 133,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0017"
+    },
+    {
+      "path": "outputs/a17/cert.gp",
+      "sha256": "460ceeba696d7e07b75bbbfd978e0910ef043f09cc01555bcb5e1500d9a7d5ac",
+      "bytes": 770,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a17/cert.gp"
+    },
+    {
+      "path": "outputs/a17/cert.json",
+      "sha256": "ea7043df550e4143f0cfe90fa69f17a416499bb5a3b8336c9b858f3aaf776815",
+      "bytes": 1022,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0018"
+    },
+    {
+      "path": "outputs/a17/cert.py",
+      "sha256": "b15dd36fe89adc150c4cf3efa72fdc0a39c4682c0bb1efc69d9e87e3dfa540e0",
+      "bytes": 5094,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a17/cert.py"
+    },
+    {
+      "path": "outputs/a17/pari.log",
+      "sha256": "459bfb1d30f351ed2ebcbe279ba259ee0e00ddbb7ed767bc2bedaf365ebfad50",
+      "bytes": 368,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0019"
+    },
+    {
+      "path": "outputs/a17/result.json",
+      "sha256": "a5cac054ac96576371cdcf2139bf314ff9e96cb42d50af712ba921c51da49c3b",
+      "bytes": 1379,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0020"
+    },
+    {
+      "path": "outputs/a18/b-prev.txt",
+      "sha256": "cf5f3f59d97766c8f794cd375891b05d0873a8da18ade8067835f5b207e35e21",
+      "bytes": 150,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0021"
+    },
+    {
+      "path": "outputs/a18/cert.gp",
+      "sha256": "a1bcc60e445d29d64cb18c59f73b5445f0a378a18875dc2ff2f182e103f602c5",
+      "bytes": 771,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a18/cert.gp"
+    },
+    {
+      "path": "outputs/a18/cert.json",
+      "sha256": "122052b2bfaf420c200d7068afb56f4b48d902a851e4296165bcdd0b68b679a6",
+      "bytes": 1053,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0022"
+    },
+    {
+      "path": "outputs/a18/cert.py",
+      "sha256": "99dd5d531eb6b2fb538c85c2804a3b505dca8015b041aad27ae041a2ff4f1696",
+      "bytes": 5247,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a18/cert.py"
+    },
+    {
+      "path": "outputs/a18/pari.log",
+      "sha256": "dd9e2c3b0bfd5b155f06f506d5d77298f0f137a627c27bc47f9aaad9505947bc",
+      "bytes": 382,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0023"
+    },
+    {
+      "path": "outputs/a18/result.json",
+      "sha256": "fc3aee43b4eaaf01c08c037907593b827ef8a4ab08fed74c9a326900b599d717",
+      "bytes": 1430,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0024"
+    },
+    {
+      "path": "outputs/a19/b-prev.txt",
+      "sha256": "c7da85aaa491e6c55aad17e9f31f5bdb1f51f20a4ddce277f625568c0c475c56",
+      "bytes": 167,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0000"
+    },
+    {
+      "path": "outputs/a19/b19.txt",
+      "sha256": "d471d62e4eaed9f443559629031a37e8bfc6dd535c9fb84ee6a5d33b2f0e10bf",
+      "bytes": 186,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0025"
+    },
+    {
+      "path": "outputs/a19/check.py",
+      "sha256": "4c67a5dfdc94bba5c6522f919ff14079de52bbc5bfa3a31ac30d404de2e6e148",
+      "bytes": 2587,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0026"
+    },
+    {
+      "path": "outputs/a19/checks.json",
+      "sha256": "d7d2ee57f5e395ae6a6c0578d3bd68c020fa05df3ad383715cc4dfcf23dd11e8",
+      "bytes": 401,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0027"
+    },
+    {
+      "path": "outputs/a19/post.json",
+      "sha256": "0a43f0a03a747b8d9e448d641851dd79f6661c8f708eb7f4110292bb199c50f0",
+      "bytes": 563,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0028"
+    },
+    {
+      "path": "outputs/a19/result.json",
+      "sha256": "8d7e1ae5083dd976b26512a629dc6720c13635313cf1bca91f2fdf240d3139d9",
+      "bytes": 2343,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0029"
+    },
+    {
+      "path": "outputs/arith19/agree.md",
+      "sha256": "e5a057332dc6fa0fcc6080fd21a2d8a69b8463c7705a9ef1d081b5017708ea39",
+      "bytes": 1478,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0030"
+    },
+    {
+      "path": "outputs/arith19/cert.json",
+      "sha256": "a523a94e0235fcda805bc51543fc32bb7151f2e0099e101f2afa20f665b6df5b",
+      "bytes": 3119,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0031"
+    },
+    {
+      "path": "outputs/arith19/check.gp",
+      "sha256": "14d53db5b7596f5d77a76e829cece71f0ab18eb29883b3652806c32fbe73ff25",
+      "bytes": 423,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/arith/check.gp"
+    },
+    {
+      "path": "outputs/arith19/check.py",
+      "sha256": "e1477d552ecd581e95afe9e7c4693d76ac8d33e7c052cd5aeeecdbc972469027",
+      "bytes": 5083,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0032"
+    },
+    {
+      "path": "outputs/arith19/pari.log",
+      "sha256": "54132b45c999cb9bd56c98feb21b7879d32448933d9906d4487cc16174a1fda7",
+      "bytes": 86,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0033"
+    },
+    {
+      "path": "outputs/arith19/proof.md",
+      "sha256": "53196c4c4a4ad4ee860463bac8bc40312e34d5f4cf0ed72a022e022d85470bc3",
+      "bytes": 3883,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0034"
+    },
+    {
+      "path": "outputs/arith19/proposta.md",
+      "sha256": "e7bd8c5ffe1ced294f3200ef5d08271bdff8a2de04966aa5088ddec8f9d07006",
+      "bytes": 3243,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0035"
+    },
+    {
+      "path": "outputs/f17end/checks.log",
+      "sha256": "5bfef484997cbcf90bccaae1edad1edf01a7a1dd2ff05bfecda747296c30b467",
+      "bytes": 1530,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0036"
+    },
+    {
+      "path": "outputs/f17end/freshmix.log",
+      "sha256": "2431f408f06e787750d060112f338525242cd16bc7b8958e0dc4c2d52c0cae01",
+      "bytes": 1100,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0037"
+    },
+    {
+      "path": "outputs/f17end/post.json",
+      "sha256": "7d53c84485357fb2ce8f802fc3ab5224724ab01ff55fdae9e5d9794cbd7adf0b",
+      "bytes": 496,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0038"
+    },
+    {
+      "path": "outputs/f17end/result.json",
+      "sha256": "86ac39ffb25c59fbe862a9dda1b840d6ba36ab26098697d0bda6356e2bd2bd59",
+      "bytes": 3565,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0039"
+    },
+    {
+      "path": "outputs/limit17/lemma.gp",
+      "sha256": "109696385fc1516ea0dceb99b252910ff2d0ee509d3cfdf8f9185090a7d636fe",
+      "bytes": 422,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/limit/lemma.gp"
+    },
+    {
+      "path": "outputs/limit17/lemma.log",
+      "sha256": "a8e1e517714e2aa57f69b192cac5cbc232b9296d1dae2bc9377da7512c59daad",
+      "bytes": 159,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0040"
+    },
+    {
+      "path": "outputs/limit17/lemma.md",
+      "sha256": "f1cda1f94a7d827c315845f60513584e4f44e273e18797a4cf1a7ab183dcefb8",
+      "bytes": 2216,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0041"
+    },
+    {
+      "path": "outputs/limit17/mixed.py",
+      "sha256": "957148f1e52566faef0a2ea0f19e54ee509e8ff765e1efc6905b8f2b89bf1050",
+      "bytes": 7009,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/limit/mixed.py"
+    },
+    {
+      "path": "outputs/limit17/test_mixed.py",
+      "sha256": "8ac1df14983bcdbc895511781990909a9edfc7770a83d6f2575af695434ce38a",
+      "bytes": 2770,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/limit/test_mixed.py"
+    },
+    {
+      "path": "outputs/limit17/tests.json",
+      "sha256": "11f2727b84005cfde519887f32afa19bdc7409ca6d896c4ac01db84b42a29b39",
+      "bytes": 369,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0042"
+    },
+    {
+      "path": "outputs/limit17/units.json",
+      "sha256": "d9e2cde53ad078e80df543e766787562679cab0457801bb29530ce9aa4a74527",
+      "bytes": 142918,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0043"
+    },
+    {
+      "path": "outputs/meta/prefix.gp",
+      "sha256": "3c6c5522f0952baaf116a440241682dc749b65b0a7e1363c5479ad424b6593a7",
+      "bytes": 1504,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "public": "ref/prefix.gp"
+    },
+    {
+      "path": "outputs/meta/prefix.json",
+      "sha256": "49463f06cf0379a4506acca130c4b129e548e208ce0600b215e02153ea51fcc9",
+      "bytes": 781,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "member": "r0044"
+    },
+    {
+      "path": "outputs/meta/replay.gp",
+      "sha256": "4c956f197fed00f24b120b70203fe152c4f4e4b7308a8d910f49177e22dab1b0",
+      "bytes": 759,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "public": "ref/replay.gp"
+    },
+    {
+      "path": "outputs/meta/replay.json",
+      "sha256": "89dd244536be8b6d252fdaefdd593e1f9e8c9d1505c5350f2a33a3da8a8d8277",
+      "bytes": 689,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "member": "r0045"
+    },
+    {
+      "path": "outputs/n19w5/report.md",
+      "sha256": "8ac269af6babfddb5af984367e7d4ab9ab3b4386e1af165d809d86753e4f5ed7",
+      "bytes": 3218,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0046"
+    },
+    {
+      "path": "outputs/part/old.json",
+      "sha256": "fb5d48769b8865014fcd28339f1e8cc4625e682efae68c4719f246c339c4a851",
+      "bytes": 1463,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0047"
+    },
+    {
+      "path": "outputs/plan/model.json",
+      "sha256": "c49cfd04fa4e432acb64655c1e75fcff94f7b0ae719274cdc132888dc4be1e19",
+      "bytes": 10473,
+      "mode": 436,
+      "role": "original bounded implementation checks and capacity input",
+      "member": "r0048"
+    },
+    {
+      "path": "outputs/r15w4/result.json",
+      "sha256": "b9a41e035d10ae6b9e0bbe462c4fd2295cc4bd5fb619024b027b02f49f252069",
+      "bytes": 2377,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0049"
+    },
+    {
+      "path": "outputs/r30w1/cert.gp",
+      "sha256": "2cb5316c91fc79cd4675ba98f818a685f7cc9bcb838a2f58811e712fe5a56ef0",
+      "bytes": 586,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a19/cert.gp"
+    },
+    {
+      "path": "outputs/r30w1/cert.json",
+      "sha256": "4d8be0ea71a0ca6edc60ab3d5180280c24602e65f91b50e380855df870259551",
+      "bytes": 890,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0050"
+    },
+    {
+      "path": "outputs/r30w1/cert.py",
+      "sha256": "2752026895ec88465173a8c63103a514836ba4f1b5b5943f9715582faddce631",
+      "bytes": 2326,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "public": "cert/a19/cert.py"
+    },
+    {
+      "path": "outputs/r30w1/pari.log",
+      "sha256": "44c28ca093237860bbd993b9339b967ee4478cd234fe6d5ff6c13b2bdeae73ca",
+      "bytes": 267,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0051"
+    },
+    {
+      "path": "outputs/r30w10/checks.log",
+      "sha256": "8030734eb6b19bf99eb3e44cbc9627aa0e5c104323bcfd0753733e66d6c59f0e",
+      "bytes": 1112,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0052"
+    },
+    {
+      "path": "outputs/r30w10/result.json",
+      "sha256": "86b9837e6acc957d871e2f675aec68cb4e0431b31dc3fc57dce0f4094fe76552",
+      "bytes": 2906,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0053"
+    },
+    {
+      "path": "outputs/run1/cfg.json",
+      "sha256": "61a49db4d328d9b504cc35c9f61cba0b4c67b6687d2b0ee8625d84e0b1d3649a",
+      "bytes": 268,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0001"
+    },
+    {
+      "path": "outputs/run1/cover.tsv",
+      "sha256": "38282c458487f02cf3b4ba2400be829cef4a2b8bb9fd9d7299b20ecafbcc31b4",
+      "bytes": 265381,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0002"
+    },
+    {
+      "path": "outputs/run1/env.txt",
+      "sha256": "7a7cf1d2f99ee84d525fc07ac9119f19d1cdde5bc71f8b595e974d07f749ec2f",
+      "bytes": 334,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0003"
+    },
+    {
+      "path": "outputs/run1/hits.tsv",
+      "sha256": "08ffd7af3c0c250730b911af17e8746f2c68f14d53004ba48a9c870b8fbafb08",
+      "bytes": 449,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0004"
+    },
+    {
+      "path": "outputs/run1/state.json",
+      "sha256": "0e1d9b5acb86d272faada419d29873cafe6b6e3adf50f47f9879f8a0f487338e",
+      "bytes": 395,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0005"
+    },
+    {
+      "path": "outputs/run2/cfg.json",
+      "sha256": "97d965273cd25d941f39a53e7c78a60ec15e1c986f5749d56f52d1a238405302",
+      "bytes": 334,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0054"
+    },
+    {
+      "path": "outputs/run2/cover.tsv",
+      "sha256": "b0fa544c0e9566cfb13cecd8b4e36b9f00a298c8986d2a78e29eefc067b51b0a",
+      "bytes": 423964,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0055"
+    },
+    {
+      "path": "outputs/run2/env.txt",
+      "sha256": "7a7cf1d2f99ee84d525fc07ac9119f19d1cdde5bc71f8b595e974d07f749ec2f",
+      "bytes": 334,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0003"
+    },
+    {
+      "path": "outputs/run2/hits.tsv",
+      "sha256": "d55a0f6104f26cf60ed5c0a23f8766cf329d79ca22f18087aa96cc484b48c8cc",
+      "bytes": 23,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0056"
+    },
+    {
+      "path": "outputs/run2/state.json",
+      "sha256": "94f04209f61bee2d1be1f8d9e39c6db0b41cb2dcb49d7fc4c698db1388fa10aa",
+      "bytes": 568,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0057"
+    },
+    {
+      "path": "outputs/run3/cfg.json",
+      "sha256": "39b304c54520532e5f8a2ee2a26a07e19943b414d086619e0e458f4688d435ab",
+      "bytes": 335,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0058"
+    },
+    {
+      "path": "outputs/run3/cover.tsv",
+      "sha256": "a2f218b30298d78964ca1402fbd27b5422d8b5a652a4d37697b0f1aecc93081a",
+      "bytes": 193388,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0059"
+    },
+    {
+      "path": "outputs/run3/env.txt",
+      "sha256": "7a7cf1d2f99ee84d525fc07ac9119f19d1cdde5bc71f8b595e974d07f749ec2f",
+      "bytes": 334,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0003"
+    },
+    {
+      "path": "outputs/run3/hits.tsv",
+      "sha256": "118893e042e82f834e0616c8fdee6db00671f621b6169f23053a6561d6b6a34e",
+      "bytes": 14,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0060"
+    },
+    {
+      "path": "outputs/run3/state.json",
+      "sha256": "2ae7e63c7082e94cd8b5dd5be1aec3a46130916ce6e11b53c2038f1c284a7134",
+      "bytes": 551,
+      "mode": 384,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0061"
+    },
+    {
+      "path": "outputs/step27/call.json",
+      "sha256": "c72c54ae2d8d22da0449b9363cffb1393f2e2b9113b0dbe009f681871016361d",
+      "bytes": 522,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0062"
+    },
+    {
+      "path": "outputs/step27/done.json",
+      "sha256": "a29bfc65af0aadaaeaa5674939365b5d4bc204745f61c9e11c1edb170d877d47",
+      "bytes": 310,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0063"
+    },
+    {
+      "path": "outputs/step27/next.log",
+      "sha256": "508c5ef989db62794589653b138deacfea56383f5cf0c587fedbceada79a7ffa",
+      "bytes": 62637,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0064"
+    },
+    {
+      "path": "outputs/step28/call.json",
+      "sha256": "11bbee8b621803319fa08c0f92c3858ed88b614a614a1fea9a6775e673cc7ec1",
+      "bytes": 661,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0065"
+    },
+    {
+      "path": "outputs/step28/done.json",
+      "sha256": "a7f98817d52b709d26bf5bca33d9d44cad545ca79b42a2d8f1539cd0e43a86e2",
+      "bytes": 275,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0066"
+    },
+    {
+      "path": "outputs/step28/next.log",
+      "sha256": "cba97b900669c9335f1b8eb596684d32182e7ef0da649638239610dde28cb37e",
+      "bytes": 63303,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0067"
+    },
+    {
+      "path": "outputs/step29/call.json",
+      "sha256": "f7e6134c7e917948719ebacb3340f265935cd57d31a97be031c0d8b8410fae1f",
+      "bytes": 661,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0068"
+    },
+    {
+      "path": "outputs/step29/done.json",
+      "sha256": "91ceebc629ef10c2f8c152c493d31874e0bff314c7fd3a5a9c910882b0fc27e8",
+      "bytes": 275,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0069"
+    },
+    {
+      "path": "outputs/step29/next.log",
+      "sha256": "47f82d610473b768eed06c5252317cd6e4fbf6e285e8b6b14e4c8ce4e289f08f",
+      "bytes": 63274,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0070"
+    },
+    {
+      "path": "paper_review/checks/replay.json",
+      "sha256": "83ce132d546dc3983edd85276b3cc84985672f7e9064aedff8e31b8f06a26063",
+      "bytes": 16293,
+      "mode": 436,
+      "role": "original positive/arithmetic certificate, admission or indispensable dependency",
+      "member": "r0071"
+    },
+    {
+      "path": "paper_review/sources/time.txt",
+      "sha256": "7a0f49838c34c9147f2b6988af176c8319214795ae6ce66eb5394ebaa125b409",
+      "bytes": 26,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "public": "ref/time.txt"
+    },
+    {
+      "path": "reference/a358321.seq",
+      "sha256": "963cabd3686cf90aae2a54c0dcb7bb3c2a3c77bcf11f00a533e6201220e323b3",
+      "bytes": 628,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "public": "ref/a358321.seq"
+    },
+    {
+      "path": "reference/a358862.seq",
+      "sha256": "023ef0619478ccf69a3bb123b793d8a68b83c43d81f8ce04fe469f93a37f3d67",
+      "bytes": 1949,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "public": "ref/a358862.seq"
+    },
+    {
+      "path": "reference/a359014.seq",
+      "sha256": "c0d82356dc7f1a7e468efc832c7e049b370e79ec88de3a4fac996575700596a1",
+      "bytes": 957,
+      "mode": 436,
+      "role": "attributed OEIS prior art, source baseline or original same-method replay",
+      "public": "ref/a359014.seq"
+    },
+    {
+      "path": "src/Makefile",
+      "sha256": "ebb3863ebc7a54157f57370adcab1d04aa5fcfce1c9d1fd4a7bb51b08c8efb26",
+      "bytes": 795,
+      "mode": 436,
+      "role": "original executed source/build/binary identity",
+      "member": "r0072"
+    },
+    {
+      "path": "src/a358321",
+      "sha256": "c93a6fea549f669a3f9b97406347fa52464f0b4a9daa83272713baf61f3da0ec",
+      "bytes": 124544,
+      "mode": 509,
+      "role": "original executed source/build/binary identity",
+      "member": "r0073"
+    },
+    {
+      "path": "src/a358321.c",
+      "sha256": "ccfd7b4e9ab4fe4752c01b4e1d523d8aa6082dc0c5a82b4fc0d798f19ed4b167",
+      "bytes": 62317,
+      "mode": 436,
+      "role": "original executed source/build/binary identity",
+      "public": "src/a358321.c"
+    },
+    {
+      "path": "src_review/r05/closure/readiness.json",
+      "sha256": "ba43ba9e21f2f45b65d081a01135f2c3ea543744276041b0e36ea7e8f18e3558",
+      "bytes": 6921,
+      "mode": 436,
+      "role": "original implementation validation, environment and provenance; historical scope",
+      "member": "r0074"
+    },
+    {
+      "path": "src_review/r05/closure/run.json",
+      "sha256": "c3f9611ec87f3990c5c089bda2779789a6ae4fd1d95afa4ade528568edd275e0",
+      "bytes": 1615,
+      "mode": 436,
+      "role": "original coverage/operating receipt and timing evidence",
+      "member": "r0075"
+    },
+    {
+      "path": "src_review/r05/env.json",
+      "sha256": "fe465cb115b8d6252c0c94b3acc0311d2c57408969b8a8a8997c6e473d23525b",
+      "bytes": 6404,
+      "mode": 436,
+      "role": "original implementation validation, environment and provenance; historical scope",
+      "member": "r0076"
+    },
+    {
+      "path": "src_review/r05/make.json",
+      "sha256": "7b1476c3f49327a61b7186b9a314b7b834f5bad4dd6e68419fc7505def667157",
+      "bytes": 13581,
+      "mode": 436,
+      "role": "original implementation validation, environment and provenance; historical scope",
+      "member": "r0077"
+    },
+    {
+      "path": "src_review/r05/proof.md",
+      "sha256": "935d74025bd6a9f84d2db398e36b63ddd49ae48da7bfef0a4017ecfa2358a967",
+      "bytes": 9026,
+      "mode": 436,
+      "role": "original implementation validation, environment and provenance; historical scope",
+      "member": "r0078"
+    },
+    {
+      "path": "validation/check_a358321.py",
+      "sha256": "47d428d6db7a2d02775c38967f57d4656238e916549d97125a2284dc8f6f6e92",
+      "bytes": 21548,
+      "mode": 436,
+      "role": "original bounded implementation checks and capacity input",
+      "public": "check/check_a358321.py"
+    },
+    {
+      "path": "validation/check_cursor.py",
+      "sha256": "c805d12ac62f77d32de1ef89440766cbbd70bd248992b5be38f12fa6c183f806",
+      "bytes": 16304,
+      "mode": 436,
+      "role": "original bounded implementation checks and capacity input",
+      "public": "check/check_cursor.py"
+    },
+    {
+      "path": "validation/check_init.py",
+      "sha256": "803703bca5388340e45b5d1d9e2830c4cf301733a6c394d5d5a771996b8f4073",
+      "bytes": 3899,
+      "mode": 436,
+      "role": "original bounded implementation checks and capacity input",
+      "public": "check/check_init.py"
+    },
+    {
+      "path": "validation/check_partition.py",
+      "sha256": "6889e5704989e3dd17679c2b135d63db71e7265b4cb95d366b0caf50dd4040b5",
+      "bytes": 10455,
+      "mode": 436,
+      "role": "original bounded implementation checks and capacity input",
+      "public": "check/check_partition.py"
+    },
+    {
+      "path": "validation/check_review02.py",
+      "sha256": "fe34467621aec448bcf034efba2bb65049d10c9d92bc5a1068e0e12869f3a90c",
+      "bytes": 4992,
+      "mode": 436,
+      "role": "original bounded implementation checks and capacity input",
+      "public": "check/check_review02.py"
+    }
+  ]
+}
