@@ -1,7 +1,7 @@
 # A358321 source and build
 
 Copyright (c) 2026 Carlo Corti. The canonical a358321.c is byte-identical to
-the reviewed schema4 producer. See ../README.md and ../paper/A358321_v4.tex
+the reviewed schema4 producer. See ../README.md and ../paper/A358321.tex
 for the current scientific endpoint, proof, bounded commands and dependencies.
 
 The public Makefile retains the original compiler/link options and changes

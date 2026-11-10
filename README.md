@@ -2,9 +2,10 @@
 
 Carlo Corti — Independent researcher — carlo.corti@outlook.com
 
-Local publication draft, prepared 10 November 2026 for author inspection.
-Nothing in this directory establishes an upload, a release, or an OEIS edit.
-The intended initial software version/date in CITATION.cff are provisional.
+Release v1.0.1: publication metadata and manuscript/PDF finalization, prepared
+10 November 2026. Scientific source, data, coverage and certificates are
+unchanged from v1.0. GitHub and the initial Zenodo deposit are public; the
+series DOI links their release history. This is not an OEIS edit.
 
 For n >= 3 and k >= 1, let `P_n(k) = k*((n-2)*k-(n-4))/2` and let
 `a(n) = min {k >= 1 : omega(P_n(k)) = n}`, when the set is nonempty.
@@ -31,7 +32,7 @@ The C producer enumerates increasing distinct prime bases and all positive
 powers, with exact tail bounds, residue filters, exact polygonal inversion
 and streaming minima. Daniel Suteu's published A358862 PARI method is the
 constructive prior art; this is a fresh C implementation. See the monolithic
-`paper/A358321_v4.tex` for definitions, proofs, chronology and bibliography.
+`paper/A358321.tex` for definitions, proofs, chronology and bibliography.
 
 The computational minima are conditional on correct producer execution and
 the recorded coverage. The earlier schema1 producer accounts for nine windows;
@@ -66,7 +67,7 @@ coverage or authentication of an artifact's owner.
 |src/a358321.c, src/Makefile|Unchanged scientific source and public build/test entry point.|
 |src/readme.md|Short source-neighbor pointer to this guide and the original build identity.|
 |data/b358321.txt|Latest canonical contiguous target data, byte-identical to the admitted table.|
-|paper/A358321_v4.tex|Current monolithic English manuscript; inline bibliography, no external scientific input files or PDF.|
+|paper/A358321.tex, paper/A358321.pdf|Monolithic English manuscript and matching PDF; inline bibliography, no external scientific input files.|
 |check/verify.py|Package-relative integrity, safe restoration and bounded verification driver.|
 |check/check_*.py|Five unchanged original implementation validators; the driver restores their original layout before invoking them.|
 |cert/a16..a19/|Unchanged Python and GP positive certificate programs.|
@@ -74,7 +75,7 @@ coverage or authentication of an artifact's owner.
 |ref/|Three attributed OEIS entry exports, export timestamp and the original published-method replay GP inputs.|
 |proof/run.tgz, proof/map.json|Losslessly compressed original records, metadata, outputs, historical producer/binaries and indispensable checker inputs, with a deduplicated restore index.|
 |proof/build.diff|Exact publication-only Makefile test-routing change.|
-|LICENSE, CITATION.cff, files.sha|Existing author license, provisional citation metadata and exact payload checksum inventory.|
+|LICENSE, CITATION.cff, .gitignore, files.sha|Existing author license, release citation metadata and exact payload checksum inventory.|
 
 Original record/proof/certificate paths are in `proof/map.json`, with role,
 SHA256, byte count, permissions and either a public file or a compact archive
@@ -130,7 +131,19 @@ campaign again. Their large transient quota/compaction fixtures are not stored
 in this repository. Optional --cc selects the compiler for the public build.
 GP mode requires empty stderr and byte-identical output to the six original
 logs; a presentation difference on another GP version requires inspection.
-TeX always uses -draftmode and creates no PDF; visual layout/color is not checked.
+The --tex check uses -draftmode and leaves the delivered PDF unchanged. The
+release PDF was separately compiled and visually inspected. To rebuild it in a
+new external directory (substitute any new path for the example):
+
+```sh
+mkdir /tmp/a358321-pdf
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/a358321-pdf paper/A358321.tex
+pdflatex -interaction=nonstopmode -halt-on-error -output-directory=/tmp/a358321-pdf paper/A358321.tex
+```
+
+The rebuilt PDF is /tmp/a358321-pdf/A358321.pdf. Creation timestamps can change
+its bytes; files.sha authenticates the delivered PDF. No TeX auxiliaries belong
+in the payload, and .gitignore deliberately keeps PDF files eligible for tracking.
 
 The build uses the original compile/link options unchanged. Only the public
 Makefile test recipes route to the package driver, because the old private
@@ -205,12 +218,13 @@ history retrieval was unavailable in the documented environment. Therefore
 this is a locally validated extension of the stated baseline, with no claim
 of worldwide priority or present OEIS incorporation.
 
-Use CITATION.cff for the software and preferred manuscript citation. Intended
-repository: https://github.com/carcorti/A358321 . Intended archive:
-https://doi.org/10.5281/zenodo.xxxxxxxx . The exact Zenodo sentinel is deliberate
-and must remain until Carlo supplies the verified designated official locator.
-Neither URL nor provisional metadata establishes current public access.
+Use CITATION.cff for the software and preferred manuscript citation.
+Repository: https://github.com/carcorti/A358321 . Zenodo series (concept) DOI:
+https://doi.org/10.5281/zenodo.24103849 . The series DOI spans releases; consult
+its version history for an immutable deposited version. The initial deposit
+is v1.0; this package supplies the finalized manuscript/PDF and metadata for
+v1.0.1. A DOI for that new individual deposit is not guessed in advance.
 
-Status: **PACKAGE_DRAFT — AWAITING AUTHOR INSPECTION**. Local fresh-root and
-distribution-shape checks are preparation checks only, not PRE-UPLOAD PASS or
-verification of an actual GitHub/Zenodo distributed release.
+Local preflight and distribution-shape checks concern the prepared payload.
+Actual provider downloads require separate checks after synchronization; one
+provider's successful validation does not establish the other's contents.

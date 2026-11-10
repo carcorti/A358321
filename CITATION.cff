@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: >-
-  Cite this software and the accompanying manuscript. Local publication draft:
-  version and date are provisional pending Carlo Corti's inspection; the Zenodo
-  DOI sentinel is intentional and does not assert publication.
+  Cite this software and the accompanying manuscript. The Zenodo series
+  (concept) DOI identifies the release history; use an individual record
+  when a fixed deposited version is required.
 type: software
 title: 'A358321: exact prime-power enumeration and arithmetic certificates'
 authors:
@@ -24,11 +24,11 @@ keywords:
   - computational number theory
   - arithmetic certificates
 license: MIT
-version: v1.0
+version: v1.0.1
 date-released: '2026-11-10'
 repository-code: https://github.com/carcorti/A358321
-url: https://doi.org/10.5281/zenodo.xxxxxxxx
-doi: 10.5281/zenodo.xxxxxxxx
+url: https://doi.org/10.5281/zenodo.24103849
+doi: 10.5281/zenodo.24103849
 preferred-citation:
   type: article
   authors:
@@ -38,6 +38,6 @@ preferred-citation:
       email: carlo.corti@outlook.com
   title: Extending A358321 by prime-power enumeration and arithmetic exclusions
   year: 2026
-  doi: 10.5281/zenodo.xxxxxxxx
-  url: https://doi.org/10.5281/zenodo.xxxxxxxx
+  doi: 10.5281/zenodo.24103849
+  url: https://doi.org/10.5281/zenodo.24103849
   repository-code: https://github.com/carcorti/A358321

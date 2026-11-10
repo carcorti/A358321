@@ -1,0 +1,9 @@
+# Generated build and TeX auxiliaries; the delivered PDF remains tracked.
+/src/a358321
+__pycache__/
+*.pyc
+/paper/*.aux
+/paper/*.log
+/paper/*.out
+/paper/*.toc
+/paper/*.synctex.gz

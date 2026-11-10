@@ -182,7 +182,7 @@ def records(work, verbose):
     seq = (work / 'reference/a358321.seq').read_text()
     historical = [int(x) for x in ''.join(re.findall(r'^%[STU] A358321 (.+)$', seq, re.M)).split(',') if x]
     values = list(historical)
-    tex = (ROOT / 'paper/A358321_v4.tex').read_text()
+    tex = (ROOT / 'paper/A358321.tex').read_text()
     for n in (16, 17, 18, 19):
         result = json.loads((work / f'outputs/a{n}/result.json').read_text())
         k = result['k']; value = k * ((n - 2) * k - (n - 4)) // 2
@@ -193,7 +193,9 @@ def records(work, verbose):
     need(regenerated == b == (work / 'outputs/a19/b19.txt').read_bytes(), 'data regeneration')
     labels = re.findall(r'\\label\{([^}]+)\}', tex)
     need(len(labels) == len(set(labels)) and set(re.findall(r'\\(?:ref|eqref)\{([^}]+)\}', tex)) <= set(labels), 'TeX labels')
-    need('10.5281/zenodo.xxxxxxxx' in tex, 'author-required sentinel')
+    need('https://doi.org/10.5281/zenodo.24103849' in tex, 'author-designated series DOI')
+    pdf = ROOT / 'paper/A358321.pdf'
+    need(pdf.is_file() and pdf.read_bytes().startswith(b'%PDF-'), 'matching manuscript PDF missing/invalid')
     # Verify joins explicitly, including the previously mistyped private-guide constant.
     P = lambda k: k * (17 * k - 15) // 2
     need(P(81587135064138) + 1 == 56579915167777506930163324840, 'producer transition')
@@ -265,8 +267,8 @@ def main():
             out = base / 'tex'; out.mkdir()
             for _ in range(2):
                 execute(['pdflatex', '-draftmode', '-interaction=nonstopmode', '-halt-on-error',
-                         '-output-directory=' + str(out), ROOT / 'paper/A358321_v4.tex'], ROOT, verbose=args.verbose)
-            log = (out / 'A358321_v4.log').read_text()
+                         '-output-directory=' + str(out), ROOT / 'paper/A358321.tex'], ROOT, verbose=args.verbose)
+            log = (out / 'A358321.log').read_text()
             need(not re.search(r'Overfull|Underfull|undefined|LaTeX Warning:|Package hyperref Warning:|^!', log, re.M), 'TeX warnings/references unresolved')
             need(not list(out.glob('*.pdf')), 'unexpected PDF')
             print('PASS two draftmode compilations; no PDF or visual inspection')
